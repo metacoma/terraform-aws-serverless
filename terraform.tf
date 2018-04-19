@@ -4,23 +4,6 @@ provider "aws" {
   region     = "${var.aws_region}"
 }
 
-resource "aws_s3_bucket" "courses2" {
-  bucket = "courses2"
-  acl    = "public-read"
-
-  tags {
-    Name        = "courses2"
-    Environment = "Dev"
-  }
-
-  cors_rule {
-    allowed_headers = ["*"]
-    allowed_methods = ["POST", "PUT", "GET"]
-    allowed_origins = ["*"]
-    expose_headers  = ["ETag"]
-    max_age_seconds = 3000
-  }
-}
 
 resource "aws_iam_role" "iam_for_lambda" {
   name = "iam_for_lambda"
@@ -72,5 +55,5 @@ resource "aws_lambda_function" "example" {
   runtime = "nodejs6.10"
 
   role = "${aws_iam_role.lambda_exec.arn}"
+  depends_on = [ "aws_s3_bucket_object.invite" ]
 }
-
