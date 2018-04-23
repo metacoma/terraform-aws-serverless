@@ -17,10 +17,16 @@ resource "aws_s3_bucket" "courses2" {
   force_destroy = true
 }
 
+data "archive_file" "invite_zip" {
+  type        = "zip"
+  source_file = "js/invite.js"
+  output_path = "${var.js_zip_path}"
+}
+
 resource "aws_s3_bucket_object" "invite" {
   bucket = "${aws_s3_bucket.courses2.id}"
-  key    = "v1.0.0/invite.zip"
-  source = "./invite.zip"
-  etag   = "${md5(file("./invite.zip"))}"
+  key    = "${var.s3_js_key}"
+  source = "${data.archive_file.invite_zip.output_path}"
+  etag   = "${data.archive_file.invite_zip.output_md5}"
   depends_on = [ "aws_s3_bucket.courses2" ]
 }

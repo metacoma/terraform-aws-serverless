@@ -39,5 +39,6 @@ resource "aws_s3_bucket_object" "index" {
   depends_on = [ "aws_s3_bucket.courses-site" ]
   content_type = "text/html; charset=utf-8"
   acl    = "public-read"
-
 }
+
+
