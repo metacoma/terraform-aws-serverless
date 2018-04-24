@@ -4,27 +4,23 @@
     <meta charset="UTF-8">
     <title>Hello World in Vue.js</title>
   </meta>
+  <script>
+			function httpGet(theUrl)
+{
+    console.log("httpGet " + theUrl);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+		httpGet("https://72ceukru7e.execute-api.us-east-2.amazonaws.com/test");
+    console.log("page init");
+  </script>
 
-  <body>
+  <body onload="httpGet('https://72ceukru7e.execute-api.us-east-2.amazonaws.com/test')">
 
     <div id="hello-world-app">
-      <h1>{{ msg }}</h1>
     </div>
-
-    <script
-      src="//cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js">
-    </script>
-
-    <script>
-      new Vue({
-        el: "#hello-world-app",
-        data() {
-          return {
-            msg: "Hello World!"
-          }
-        }
-      });
-    </script>
 
   </body>
 </html>

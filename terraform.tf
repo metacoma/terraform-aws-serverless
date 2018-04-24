@@ -139,3 +139,4 @@ resource "aws_iam_policy" "lambda_iam_policy" {
 }
 EOF
 }
+

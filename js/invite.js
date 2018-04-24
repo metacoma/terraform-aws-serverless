@@ -8,8 +8,8 @@ var dynamo = new DOC.DynamoDB();
 var params = {
   TableName: 'Invites',
   Item: {
-    'InviteId' : {S: 'a1a15ba84b4fcc82c5787e40d7def923'},
-    'Email' : {S: 'domain@example.com'},
+    'InviteId' : '1',
+    'Email' : 'domain@example.com',
   }
 };
 

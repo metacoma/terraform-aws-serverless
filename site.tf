@@ -42,3 +42,6 @@ resource "aws_s3_bucket_object" "index" {
 }
 
 
+output "site url" {
+  value = "${aws_s3_bucket.courses-site.website_endpoint}"
+}
